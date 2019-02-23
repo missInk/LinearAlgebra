@@ -1,0 +1,198 @@
+@charset "UTF-8";
+body, html {
+	padding: 0px;
+	margin: 0px auto; /*设置居中  */
+	text-align: center; /*兼容性更好  */
+	background-color: #F8F8F8;
+	border: none;
+}
+
+.background {
+	width: 1004px;
+	overflow: auto;
+	background-color: #F5F5F5;
+	margin: 0 auto;
+	min-height: 700px;
+}
+
+.leftBodyBlank {
+	width: 22px;
+	min-height: 300px;
+	float: left;
+}
+
+.tBody {
+	width: 960px;
+	font-family: 微软雅黑;
+	min-height: 460px;
+	float: left;
+}
+
+.smallNav {
+	width: 960px;
+	height: 24px;
+	margin-top: 10px;
+	float: left;
+	font-size: 14px;
+}
+
+.editMenu {
+	width: 360px;
+	height: 30px;
+	margin-top: 15px;
+	float: left;
+}
+
+.pageNav {
+	width: 480px;
+	height: 30px;
+	margin-top: 15px;
+	float: left;
+}
+
+.pageGo {
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 15px;
+	float: left;
+	font-size: 13px;
+	margin-top: 15px;
+}
+
+.pageNav a button {
+	width: 35px;
+	height: 30px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	background-color: white;
+	border: 1px solid silver;
+}
+
+.pageNav a button:HOVER {
+	width: 35px;
+	height: 30px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	background-color: #A2C1DE;
+	border: 1px solid silver;
+}
+
+.pageNav button {
+	width: 35px;
+	height: 30px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	background-color: #EFF4FB;
+	border: 1px solid silver;
+}
+
+.butt {
+	background-color: #6699CC;
+	width: 120px;
+	height: 30px;
+	margin-right: 10px;
+	float: left;
+	border: 0;
+	color: white;
+	font-size: 18px;
+}
+
+.butt:hover {
+	background-color: #71AAE3;
+	border: 0;
+}
+
+table td {
+	height: 30px;
+	font-size: 16px;
+}
+
+a:link, a:visited {
+	color: #525252;
+	text-decoration: none;
+} /* 未被访问的链接 */ /*已被访问的链接 */
+a:hover {
+	color: #525252;
+	text-decoration: underline;
+} /* 鼠标指针移动到链接上 */
+.topicTitle:link, .topicTitle:visited {
+	color: #525252;
+	text-decoration: none;
+}
+
+.topicTitle:hover {
+	color: #2C86E5;
+	text-decoration: underline;
+}
+
+.titleStyle {
+	width: 960px;
+	height: 35px;
+	line-height: 30px;
+	margin-top: 15px;
+	background-color: #A2C1DE;
+	float: left;
+	text-align: left;
+}
+
+.listTopicDiv {
+	float: left;
+	width: 960px;
+	height: 320px;
+	background-color: white;
+	width: 960px;
+	/* border: 1px solid #C2D5E3; */
+}
+
+.listTopicStyle td {
+	border-bottom: 1px dashed silver;
+}
+/* ------------------ HEADER HERE -------------------*/
+.header {
+	height: 94px;
+	width: 100%;
+	background: #1ca6d7;
+}
+.header-container {
+	width: 980px;
+	margin: 0 auto;
+	padding: 22px 0;
+}
+.header-container .logo {
+	display: inline-block;
+	float: left;
+	padding: 0 0 0 34px;
+}
+.header-container .logo a {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 38px;
+	color: #ffffff;
+	font-weight: normal;
+	display: block;
+}
+.header-container .toll-free {
+	display: inline-block;
+	float: right;
+	padding: 0 27px 0 0;
+}
+.header-container .toll-free p {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: normal;
+	display: inline-block;
+}
+.header-container .toll-free a {
+	display: inline-block;
+	width: 80px;
+	height: 38px;
+	line-height: 36px;
+	font-size: 16px;
+	color: #fff;
+	border: solid 1px #fff;
+	text-align: center;
+	margin: 7px 0 0 0;
+	margin-right: 10px;
+}
+/*-------------------------------------------*/

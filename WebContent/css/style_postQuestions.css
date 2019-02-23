@@ -1,0 +1,262 @@
+@charset "UTF-8";
+ .titleStyle {
+        width: 940px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 22px;
+        margin-top: 15px;
+        padding-left: 20px;
+        background-color: #A2C1DE;
+        font-family: 微软雅黑;
+        float: left;
+        text-align: left;
+    }
+
+    .newStyle {
+        width: 960px;
+        margin-left: 22px;
+        margin-top: 20px;
+        font-family: 微软雅黑;
+        float: left;
+        /* border: 1px solid silver; */
+    }
+
+    .newStyle table {
+        border-right: 1px solid #A9CBEE;
+        border-bottom: 1px solid #A9CBEE
+    }
+
+    .newStyle table td,.newStyle table th {
+        height: 30px;
+        line-height: 30px;
+        border-left: 1px solid #A9CBEE;
+        border-top: 1px solid #A9CBEE;
+    }
+
+    .newStyle select {
+        font-family: 微软雅黑;
+        border: 1px solid #A9CBEE;
+    }
+
+    .butt {
+        background-color: #6699CC;
+        width: 120px;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 15px;
+        border: 0;
+        color: white;
+        font-size: 18px;
+        border: 0;
+    }
+
+    .butt:hover {
+        background-color: #71AAE3;
+        border: 0;
+    }
+
+    .notice {
+        margin: 10px 10px 10px 10px;
+        padding: 10px 10px 10px 25px;
+        border: solid 1px #ccc;
+    }
+    #textarea{
+        width: 790px;
+        height: 380px;
+        line-height: 24px;
+        font-size: 14px;
+        padding-left: 6px;
+        resize: none;
+    }
+    
+     body,html {
+        padding: 0px;
+        margin: 0px auto; /*设置居中  */
+        text-align: center; /*兼容性更好  */
+        background-color: #F8F8F8;
+        border: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:link {
+        color: black;
+        text-decoration: none;
+    } /* 未被访问的链接 */
+    a:visited {
+        color: black;
+    } /* 已被访问的链接 */
+    a:hover {
+        text-decoration: underline;
+        color: #67ADF2;
+    } /* 鼠标指针移动到链接上 */
+    a:active {
+        color: black;
+        text-decoration: underline;
+    }
+
+    a img {
+        border: none;
+    }
+
+    #nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        list-style-type: none;
+    }
+
+    #nav ul li {
+        position: relative;
+        width: 110px;
+        background: #6699CC;
+        float: left;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        font-weight: bold
+    }
+
+    #nav ul li a { /* border-right: 1px solid #e9e9e9; */
+        color: white;
+        height: 40px;
+        line-height: 40px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        text-decoration: none;
+    }
+
+    #nav ul li a:hover {
+        font-weight: bold;
+        background: #71AAE3;
+    }
+
+    #nav ul li ul {
+        display: none;
+    }
+
+    #nav ul li:hover ul {
+        display: block;
+        position: absolute;
+        min-width: 190px;
+        left: 0;
+    }
+
+    #nav ul li:hover ul li a {
+        display: block;
+        background: #6699CC;
+        color: white;
+        width: 110px;
+        text-align: center;
+        border-right: none;
+    }
+
+    #nav ul li:hover ul li a:hover {
+        background: #71AAE3;
+        color: white;
+    }
+/* ------------------ HEADER HERE -------------------*/
+.header {
+	height: 94px;
+	width: 100%;
+	background: #1ca6d7;
+}
+.header-container {
+	width: 980px;
+	margin: 0 auto;
+	padding: 22px 0;
+}
+.header-container .logo {
+	display: inline-block;
+	float: left;
+	padding: 0 0 0 34px;
+}
+.header-container .logo a {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 38px;
+	color: #ffffff;
+	font-weight: normal;
+	display: block;
+}
+.header-container .toll-free {
+	display: inline-block;
+	float: right;
+	padding: 0 27px 0 0;
+}
+.header-container .toll-free p {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: normal;
+	display: inline-block;
+}
+.header-container .toll-free a {
+	display: inline-block;
+	width: 80px;
+	height: 38px;
+	line-height: 36px;
+	font-size: 16px;
+	color: #fff;
+	border: solid 1px #fff;
+	text-align: center;
+	margin: 7px 0 0 0;
+	margin-right: 10px;
+}
+/*-------------------------------------------*/
+
+/* ------------------ FOOTER HERE --------------------------*/
+.footer {
+	width: 100%;
+    height: 88px;
+	background: #333333;
+}
+.footer-in {
+	width: 980px;
+	margin: 0 auto;
+	padding: 36px 0 36px 0;
+}
+.social-icons {
+	float: left;
+	padding: 0 0 0 28px;
+	display: inline-block;
+}
+.social-icons ul {
+	float: left;
+	display: inline-block;
+}
+.social-icons ul li {
+	float: left;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+.social-icons ul li a {
+	display: block;
+}
+.copy {
+	float: right;
+	display: inline-block;
+	padding: 0 15px 0 0;
+}
+.copy p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	color: #999999;
+	display: inline-block;
+}
+.copy a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	color: #999999;
+	display: inline-block;
+	text-decoration: underline;
+}
+.copy a:hover {
+	text-decoration: none;
+}
+/* ---------------------------------------------------------*/
