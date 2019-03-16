@@ -65,8 +65,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int signUp(User user) {
-		String sql = "INSERT INTO `linearalgebra`.`user` (`uid`, `uname`, `upwd`, `uemail`, `code`, `upermissions`, `state`) VALUES (?, ?, ?, ?, ?, '用户', '-1');";
-		Object[] params = { user.getUid(), user.getUname(), user.getUpwd(), user.getUemail(), user.getCode() };
+		String sql = "INSERT INTO `linearalgebra`.`user` (`uid`, `uname`, `upwd`, `uemail`, `code`, `upermissions`, `state`, `registerTime`) VALUES (?, ?, ?, ?, ?, '用户', '-1', ?);";
+		Object[] params = { user.getUid(), user.getUname(), user.getUpwd(), user.getUemail(), user.getCode(), user.getRegisterTime() };
 		if (DBUtil.executeUpdate(sql, params)) {
 			return 1;
 		}

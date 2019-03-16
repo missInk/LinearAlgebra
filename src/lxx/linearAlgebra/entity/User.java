@@ -9,11 +9,24 @@ public class User {
 	private String upermissions;
 	private int state;
 	private String code;
+	private String registerTime;
 
 	@Override
 	public String toString() {
 		return "User [uname=" + uname + ", upwd=" + upwd + ", uemail=" + uemail + "]";
 	}
+	
+	public String getRegisterTime() {
+		return registerTime;
+	}
+
+
+
+	public void setRegisterTime(String registerTime) {
+		this.registerTime = registerTime;
+	}
+
+
 
 	public int getState() {
 		return state;

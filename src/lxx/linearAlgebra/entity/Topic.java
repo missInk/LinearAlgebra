@@ -7,6 +7,7 @@ public class Topic {
 	private int idtopic;
 	private String title;
 	private String content;
+	private String uname;
 	/**
 	 * »Ø¸´´ÎÊý
 	 */
@@ -43,6 +44,14 @@ public class Topic {
 		this.topics_user_id = topics_user_id;
 	}
 	
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
 	public int getIdtopic() {
 		return idtopic;
 	}

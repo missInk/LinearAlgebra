@@ -1,1 +1,234 @@
 @charset "UTF-8";
+
+body {
+    padding: 0px;
+    margin: 0px auto;
+    background-color: #F8F8F8;
+    border: none;
+}
+a{
+    text-decoration:none;
+}
+.contextVal{
+    margin: 0px;
+    width: 975px;
+    height: 147px;
+    border-left-width: 2px;
+    position: relative;
+    left: 10px;
+    resize: none;
+}
+.postContext{
+	top: 8px;
+    right: 20px;
+    position: relative;
+    left: 30px;
+    width: 1010px;
+    height: 200px;
+}
+.upContext{
+	position: relative;
+    left: 960px;
+    top: 10px;
+}
+.wgt-best{
+    width: 1010px;
+    margin-left: 30px;
+}
+.wgt-replyer-all{
+	margin-top: 10px;
+}
+.context{
+	margin-bottom: 10px;
+    margin-top: 10px;
+}
+.wgt-ask h1 .ask-title {
+    display: inline;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 400;
+    overflow: hidden;
+}
+.wgt-ask h1 {
+	margin-top: 0px;
+    word-break: break-all;
+    position: relative;
+    width: 1010px;
+    top: 20px;
+    left: 30px;
+}
+body, h1, .h1, h2, .h2 .layout-center #body, div.wgt-best, code, kbd, pre, samp, .f-yahei, a.f-yahei, .ff-arial, .wgt-footer-new, .wgt-replyer-best .f-aid p a.user-name, .wgt-replyer-best .f-aid p a.mavin-name, .wgt-replyer-best .f-aid p a.opendev-name, .wgt-ask .q-content {
+     font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+ }
+h1, .h1 {
+    font: 700 16px/26px "Microsoft YaHei",SimHei,arial;
+}
+.wgt-ask .q-content .con, .wgt-ask .q-content .con-all, .wgt-ask .q-content .conReal {
+    word-break: break-all;
+    display: inline-block;
+    width: 100%;
+    margin-left: 30px;
+    margin-top: 25px;
+}
+.wgt-ask .ask-info #v-times {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #9eacb6;
+}
+.wgt-ask .ask-info .cannotanswer-alias-wp {
+    margin-top: -8px;
+}
+.wgt-ask .ask-info {
+    position: relative;
+    line-height: 29px;
+    min-height: 29px;
+    margin-top: 15px;
+    box-sizing: border-box;
+}
+.wgt-ask {
+    position: relative;
+    z-index: 2;
+    line-height: 20px;
+    margin-bottom: 0px;
+    background: #fff;
+}
+#body .layout-wrap {
+    width: 1070px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+body, #body {
+    font: 14px/24px "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+}
+#body {
+    position: relative;
+    overflow: visible;
+}
+.question-all-answers-number .question-all-answers-title {
+    display: inline-block;
+    background: #FFF;
+    position: relative;
+    padding-right: 15px;
+    left: 30px;
+}
+.question-all-answers-number {
+    position: relative;
+    font-size: 18px;
+    color: #7a8f9a;
+    line-height: 18px;
+    margin: 7px auto 0;
+}
+.question-all-answers-number .question-all-answers-line {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #e8ecee;
+}
+/* ------------------ HEADER HERE -------------------*/
+.header {
+	height: 94px;
+	width: 100%;
+	background: #1ca6d7;
+}
+.header-container {
+	width: 980px;
+	margin: 0 auto;
+	padding: 22px 0;
+}
+.header-container .logo {
+	display: inline-block;
+	float: left;
+	padding: 0 0 0 34px;
+}
+.header-container .logo a {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 38px;
+	color: #ffffff;
+	font-weight: normal;
+	display: block;
+}
+.header-container .toll-free {
+	display: inline-block;
+	float: right;
+	padding: 0 27px 0 0;
+}
+.header-container .toll-free p {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: normal;
+	display: inline-block;
+}
+.header-container .toll-free a {
+	display: inline-block;
+	width: 80px;
+	height: 38px;
+	line-height: 36px;
+	font-size: 16px;
+	color: #fff;
+	border: solid 1px #fff;
+	text-align: center;
+	margin: 7px 0 0 0;
+	margin-right: 10px;
+}
+/*-------------------------------------------*/
+
+/* ------------------ FOOTER HERE --------------------------*/
+.footer {
+	width: 100%;
+    height: 88px;
+	background: #333333;
+}
+.footer-in {
+	width: 980px;
+	margin: 0 auto;
+	padding: 36px 0 36px 0;
+}
+.social-icons {
+	float: left;
+	padding: 0 0 0 28px;
+	display: inline-block;
+}
+.social-icons ul {
+	float: left;
+	display: inline-block;
+}
+.social-icons ul li {
+	float: left;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+.social-icons ul li a {
+	display: block;
+}
+.copy {
+	float: right;
+	display: inline-block;
+	padding: 0 15px 0 0;
+}
+.copy p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	color: #999999;
+	display: inline-block;
+}
+.copy a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	color: #999999;
+	display: inline-block;
+	text-decoration: underline;
+}
+.copy a:hover {
+	text-decoration: none;
+}
+/* ---------------------------------------------------------*/

@@ -25,7 +25,7 @@
         <div class="read1-img1"> <img src="${pageContext.request.contextPath }/images/read1-img.png" width="32" height="32" alt="img" /> </div>
         <h3>自动解答</h3>
         <p>自动解答模块可以完成一些基本的线性代数计算，比如:行列式求值、矩阵加法和乘法、矩阵的转置、实现逆矩阵、求矩阵的秩、 线性相关的判断、矩阵的特征值、判断两个矩阵是否相似</p>
-        <a href="#">进入该模块</a> </div>
+        <a href="${pageContext.request.contextPath }/autoAnswer.jsp">进入该模块</a> </div>
       <div class="read1">
         <div class="read1-img1"> <img src="${pageContext.request.contextPath }/images/read2-img.png" width="32" height="32" alt="img" /> </div>
         <h3>讨论问答</h3>

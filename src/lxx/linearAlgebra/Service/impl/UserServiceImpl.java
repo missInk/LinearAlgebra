@@ -1,5 +1,8 @@
 package lxx.linearAlgebra.Service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import lxx.linearAlgebra.Dao.UserDao;
 import lxx.linearAlgebra.Dao.Impl.UserDaoImpl;
 import lxx.linearAlgebra.Service.UserService;
@@ -32,6 +35,10 @@ public class UserServiceImpl implements UserService {
 	public int signUp(User user) {
 		String code = CodeUtil.generateUniqueCode();
 		UserDao userDao = new UserDaoImpl();
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+		String registerTime = dateFormat.format(date);
+		user.setRegisterTime(registerTime);
 		user.setUpwd(MD5Util.makeStringToMD5(user.getUpwd()));
 		user.setCode(code);
 		int result = userDao.signUp(user);

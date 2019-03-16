@@ -2,7 +2,6 @@ package lxx.linearAlgebra.Dao;
 
 import java.util.List;
 
-import lxx.linearAlgebra.entity.Comment;
 import lxx.linearAlgebra.entity.Topic;
 
 public interface TopicDao {
@@ -24,10 +23,9 @@ public interface TopicDao {
 	 *跳转到指定页数
 	 * @param selectPage 选择的页面页数
 	 * @param pageSize 页面的大小
-	 * @param htmls 未拼凑的html代码
-	 * @return  返回拼凑好的html代码
+	 * @return 包含问题的List集合
 	 */
-	String goPage(int selectPage, int pageSize, String[] htmls);
+	List<Topic> goPage(int selectPage, int pageSize);
 	
 	/**
 	 * 通过问题的id来获得问题的标题和内容
@@ -37,23 +35,17 @@ public interface TopicDao {
 	Topic getTopic(int idtopic);
 	
 	/**
-	 * 通过问题的id来获得问题的所有评论
-	 * @param idtopic
-	 * @return
+	 * 更具传入的部分信息获取问题
+	 * @param val 传入的部分信息
+	 * @return 包含问题的list集合
 	 */
-	List<Comment> getComments(int idtopic);
+	List<Topic> findTopics(String val);
 	
 	/**
-	 * 上传问题回复
-	 * @param comment
-	 * @return 1：上传成功，0：上传失败
+	 * 删除问答
+	 * @param idtopic 问答的id
+	 * @return 成功true，失败false
 	 */
-	int upComment(Comment comment);
+	boolean delTopic(int idtopic);
 	
-	/**
-	 * 获取某一问题的回复次数
-	 * @param idtopic 查询的问题的id
-	 * @return 回复次数
-	 */
-	int getCommentCount(int idtopic);
 }

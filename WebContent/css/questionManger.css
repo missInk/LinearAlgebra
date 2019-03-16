@@ -1,0 +1,70 @@
+@charset "UTF-8";
+.footer{
+	margin-top: 15px;
+}
+.editMenu {
+    width: 360px;
+    height: 30px;
+    margin-top: 15px;
+    float: left;
+}
+.pageNav {
+	margin-top: 10px;
+    width: 820px;
+    height: 30px;
+    float: left;
+}
+.pageNav button {
+    width: 35px;
+    height: 30px;
+    font-size: 14px;
+    font-family: 微软雅黑;
+    background-color: #EFF4FB;
+    border: 1px solid silver;
+}
+.pageGo {
+	margin-top: 10px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    font-size: 13px;
+}
+.titleStyle{
+	margin: 0;
+    font-size: 1.4rem;
+    padding: .5rem;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-bottom-style: dashed;
+}
+.titleStyle tr{
+	height: 30px;
+	line-height: 30px;
+}
+.titleStyle td{
+	text-align: center;
+	font-size: 1.0rem;
+}
+.td1{
+	width: 440px;
+}
+.td2{
+	width: 150px;
+}
+.td3{
+	width: 60px;
+}
+.td4{
+	width: 90px;
+}
+.td5{
+	width: 160px;
+}
+
+.listTopicDiv {
+	width: 100%;
+	float: left;
+	background-color: white;
+}

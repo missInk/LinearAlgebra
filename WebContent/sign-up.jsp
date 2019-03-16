@@ -169,7 +169,7 @@
 					$.post(url,args,function(data){
 						var jsonObject = eval("(" + data + ")");
 						if(jsonObject.message == "success"){
-							window.location.href="${pageContext.request.contextPath }/index.jsp";
+							window.location.href="${pageContext.request.contextPath }/sign-in.jsp";
 						}else{
 							alert(jsonObject.message);
 						}

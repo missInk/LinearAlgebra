@@ -1,4 +1,30 @@
 @charset "UTF-8";
+.tableStyle{
+	margin: 0;		
+	font-size: 12px;
+}
+.tableStyle tr{
+	height: 30px;
+	line-height: 30px;
+}
+.tableStyle td{
+	text-align: center;
+}
+.td1{
+	width: 480px;
+}
+.td2{
+	width: 160px;
+}
+.td3{
+	width: 60px;
+}
+.td4{
+	width: 60px;
+}
+.td5{
+	width: 160px;
+}
 body, html {
 	padding: 0px;
 	margin: 0px auto; /*设置居中  */
@@ -6,7 +32,9 @@ body, html {
 	background-color: #F8F8F8;
 	border: none;
 }
-
+a{
+    text-decoration:none;
+}
 .background {
 	width: 1004px;
 	overflow: auto;

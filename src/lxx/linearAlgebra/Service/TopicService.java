@@ -2,7 +2,6 @@ package lxx.linearAlgebra.Service;
 
 import java.util.List;
 
-import lxx.linearAlgebra.entity.Comment;
 import lxx.linearAlgebra.entity.Topic;
 
 public interface TopicService {
@@ -24,9 +23,9 @@ public interface TopicService {
 	 *跳转到指定页数
 	 * @param selectPage 选择的页面页数
 	 * @param pageSize 页面的大小
-	 * @return  返回拼凑好的html代码
+	 * @return  包含问题的list集合
 	 */
-	String goPage(int selectPage, int pageSize);
+	List<Topic> goPage(int selectPage, int pageSize);
 	
 	/**
 	 * 通过问题的id来获得问题的内容
@@ -36,18 +35,16 @@ public interface TopicService {
 	Topic getTopic(int idtopic);
 	
 	/**
-	 * 通过问题的id来获得问题的所有评论
-	 * @param idtopic
-	 * @return
+	 * 更具传入的部分信息获取问题
+	 * @param val 传入的部分信息
+	 * @return 包含问题的list集合
 	 */
-	List<Comment> getComments(int idtopic);
+	List<Topic> findTopics(String val);
 	
 	/**
-	 * 上传回复
-	 * @param uid 上传的人的id
-	 * @param idtopic 回复对应问题的id
-	 * @param content 回复的内容
-	 * @return 1：上传成功，0：上传失败
+	 * 删除问答
+	 * @param idtopic 问答的id
+	 * @return 成功true，失败false
 	 */
-	int upComment(int uid, int idtopic, String content);
+	boolean delTopic(int idtopic);
 }

@@ -18,6 +18,7 @@ public class LineAlgebraUtil {
 	public static int getRow(File file) {
 		int row = -1;
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			row = 0;
 			while (reader.readLine() != null) {
@@ -45,6 +46,7 @@ public class LineAlgebraUtil {
 	public static int getCol(File file, int row) {
 		int col = -1;
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String colString = reader.readLine();
 			col = colString.split(";").length;
@@ -65,6 +67,17 @@ public class LineAlgebraUtil {
 	}
 
 	/**
+	 * 返回行列式的列数
+	 * 
+	 * @param line
+	 *            行列式的某一行
+	 * @return 行列式的列数
+	 */
+	public static int getCol(String line) {
+		return line.split(" ").length;
+	}
+
+	/**
 	 * 将一个文件转换为行列式
 	 */
 	public static double[][] toLineAlgebra(File file) {
@@ -72,6 +85,7 @@ public class LineAlgebraUtil {
 		int col = getCol(file, row);
 		double[][] lineAlgebra = new double[row][col];
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			for (int i = 0; i < row; i++) {
 				String line = reader.readLine();
@@ -86,7 +100,7 @@ public class LineAlgebraUtil {
 		} catch (IOException e) {
 			System.out.println("文件读取异常");
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException("文件出现未知异常");
 		}
 		return lineAlgebra;
@@ -94,9 +108,13 @@ public class LineAlgebraUtil {
 
 	/**
 	 * 输出行列式
-	 * @param lineAlgebra 行列式
-	 * @param row 行数
-	 * @param col 列数
+	 * 
+	 * @param lineAlgebra
+	 *            行列式
+	 * @param row
+	 *            行数
+	 * @param col
+	 *            列数
 	 */
 	public static void sysoLineAlgebra(double[][] lineAlgebra, int row, int col) {
 		for (int i = 0; i < row; i++) {
@@ -106,7 +124,7 @@ public class LineAlgebraUtil {
 			System.out.println();
 		}
 	}
-	
+
 	/**
 	 * 将规定好的字符串按照一定的格式划分为指定行列的行列式
 	 * 
@@ -119,7 +137,7 @@ public class LineAlgebraUtil {
 	 */
 	public static double[][] toLineAlgebra(String value, int row, int col) {
 		double[][] lineAlgebra = new double[row][col];
-		String[] values = value.split(";");
+		String[] values = value.split(" ");
 		if (row * col != values.length) {
 			throw new RuntimeException("行列式不符合规范");
 		}
@@ -189,8 +207,8 @@ public class LineAlgebraUtil {
 	}
 
 	/**
-	 * 逐次超松弛方法SOR,目前还不知道扎用
-	 * 解线性方程组
+	 * 逐次超松弛方法SOR,目前还不知道扎用 解线性方程组
+	 * 
 	 * @param a
 	 * @param b
 	 * @return
@@ -256,7 +274,6 @@ public class LineAlgebraUtil {
 				// c矩阵的第i行第j列所对应的数值，等于a矩阵的第i行分别乘以b矩阵的第j列之和
 				for (int k = 0; k < b.length; k++)
 					c[i][j] += a[i][k] * b[k][j];
-		LineAlgebraUtil.sysoLineAlgebra(c, 2, 3);
 		return c;
 	}
 

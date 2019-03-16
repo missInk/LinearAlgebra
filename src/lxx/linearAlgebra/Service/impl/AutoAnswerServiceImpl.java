@@ -20,9 +20,29 @@ import lxx.linearAlgebra.entity.UpFile;
 
 public class AutoAnswerServiceImpl implements AutoAnswerService {
 
+	/**
+	 * 将String类型的字符串转换为矩阵
+	 * @param line
+	 * @return 一个矩阵
+	 */
+	private double[][] getLine(String line){
+		String[] lines = line.split("\n");
+		int row = lines.length - 1;
+		int col = LineAlgebraUtil.getCol(lines[1]);
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0; i < row; i++) {
+			builder.append(lines[i+1]);
+		}
+		String value = builder.toString();
+		return LineAlgebraUtil.toLineAlgebra(value, row, col);
+	}
+	
 	@Override
-	public double doGetValue(File file) {
-		return LineAlgebraUtil.getValue(LineAlgebraUtil.toLineAlgebra(file), LineAlgebraUtil.getRow(file));
+	public double doGetValue(String line) {
+		String[] lines = line.split("\n");
+		int row = lines.length - 1;
+		double[][] p = getLine(line);
+		return LineAlgebraUtil.getValue(p, row);
 	}
 
 	@Override
@@ -42,6 +62,7 @@ public class AutoAnswerServiceImpl implements AutoAnswerService {
 				List<FileItem> items = upload.parseRequest(request);
 				Iterator<FileItem> iterator = items.iterator();
 				//遍历表单中的所有字段
+				upFile.setUpResult("文件上传为空");
 				while(iterator.hasNext()) {
 					FileItem item = iterator.next();
 					if(item.getFieldName().substring(0, 13).equals("linearAlgebra")) {//更具name属性获取字段
@@ -78,16 +99,16 @@ public class AutoAnswerServiceImpl implements AutoAnswerService {
 
 	
 	@Override
-	public double[][] matrixMultiplication(File a, File b) {
-		double[][] matrixA = LineAlgebraUtil.toLineAlgebra(a);
-		double[][] matrixB = LineAlgebraUtil.toLineAlgebra(b);
+	public double[][] matrixMultiplication(String LineA, String LineB) {
+		double[][] matrixA = getLine(LineA);
+		double[][] matrixB = getLine(LineB);
 		return LineAlgebraUtil.matrixMultiplication(matrixA, matrixB);
 	}
 
 	@Override
-	public double[][] matrixAdd(File a, File b) {
-		double[][] matrixA = LineAlgebraUtil.toLineAlgebra(a);
-		double[][] matrixB = LineAlgebraUtil.toLineAlgebra(b);
+	public double[][] matrixAdd(String LineA, String LineB) {
+		double[][] matrixA = getLine(LineA);
+		double[][] matrixB = getLine(LineB);
 		return LineAlgebraUtil.matrixAdd(matrixA, matrixB);
 	}
 
@@ -107,22 +128,51 @@ public class AutoAnswerServiceImpl implements AutoAnswerService {
 	}
 
 	@Override
-	public double[][] Transpose(File file) {
-		double[][] matrix = LineAlgebraUtil.toLineAlgebra(file);
+	public double[][] Transpose(String line) {
+		double[][] matrix = getLine(line);
 		return LineAlgebraUtil.Transpose(matrix, matrix.length, matrix[0].length);
 	}
 
 	@Override
-	public double[][] mrinv(File file) {
-		double[][] matrix = LineAlgebraUtil.toLineAlgebra(file);
+	public double[][] mrinv(String line) {
+		double[][] matrix = getLine(line);
 		LineAlgebraUtil.Mrinv(matrix, matrix.length);
 		return matrix;
 	}
 
 	@Override
-	public int rank(File file) {
-		double[][] matrix = LineAlgebraUtil.toLineAlgebra(file);
+	public int rank(String line) {
+		double[][] matrix = getLine(line);
 		return LineAlgebraUtil.Rank(matrix, -1, matrix.length);
+	}
+
+	@Override
+	public String toLine(File file) {
+		StringBuilder line = new StringBuilder();
+		int row = LineAlgebraUtil.getRow(file);
+		int col = LineAlgebraUtil.getCol(file, row);
+		double[][] value = LineAlgebraUtil.toLineAlgebra(file);
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++) {
+				line.append(Double.toString(value[i][j])+" ");
+			}
+			line.append("\n");
+		}
+		return line.toString();
+	}
+
+	@Override
+	public String toLine(double[][] matrix) {
+		StringBuilder line = new StringBuilder();
+		int row = matrix.length;
+		int col = matrix[0].length;
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++) {
+				line.append(Double.toString(matrix[i][j])+" ");
+			}
+			line.append("\n");
+		}
+		return line.toString();
 	}
 
 }

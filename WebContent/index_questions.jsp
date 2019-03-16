@@ -110,20 +110,20 @@ function goPageindex(pageindex){
         </div>
     </div>
     <div class="titleStyle" align="left">
-        <table border="0" style="margin: 0;		font-size: 12px;">
+        <table class="tableStyle">
             <tbody>
-            <tr style="height: 30px;line-height: 30px;">
-                <td style="width: 480px;" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标题</font></font></td>
-                <td style="width: 160px;" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作者</font></font></td>
-                <td style="width: 60px;" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font></td>
-                <td style="width: 60px;" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">回复</font></font></td>
-                <td style="width: 160px;" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发布时间</font></font></td>
+            <tr>
+                <td class="td1">标题</td>
+                <td class="td2">作者</td>
+                <td class="td3">状态</td>
+                <td class="td4">回复</td>
+                <td class="td5">发布时间</td>
             </tr>
             </tbody></table>
     </div>
     <div class="listTopicDiv">
-        <table align="left" class="listTopicStyle">
-            <tbody  id="valueContent">
+        <table class="listTopicStyle">
+            <tbody class="tableStyle" id="valueContent">
             </tbody>
         </table>
     </div>

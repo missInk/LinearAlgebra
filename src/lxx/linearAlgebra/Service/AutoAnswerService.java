@@ -10,11 +10,24 @@ import lxx.linearAlgebra.entity.UpFile;
 public interface AutoAnswerService {
 	
 	/**
+	 * 将一个文件内的值转变为矩阵
+	 * @param file
+	 * @return
+	 */
+	String toLine(File file);
+	
+	/**
+	 * 将一个行列式转换为字符串
+	 * @param matrix
+	 * @return
+	 */
+	String toLine(double[][] matrix);
+	
+	/**
 	 * 计算文件内包含的行列式的值
-	 * @param file 一个包含行列式的文件
 	 * @return 行列式的值
 	 */
-	double doGetValue(File file);
+	double doGetValue(String line);
 	
 	/**
 	 * 将request中的文件写道服务器中
@@ -28,7 +41,7 @@ public interface AutoAnswerService {
 	 * @param b
 	 * @return
 	 */
-	double[][] matrixMultiplication(File a, File b);
+	double[][] matrixMultiplication(String LineA, String LineB);
 	
 	/**
 	 * 进行矩阵的加法
@@ -36,7 +49,7 @@ public interface AutoAnswerService {
 	 * @param b
 	 * @return
 	 */
-	double[][] matrixAdd(File a, File b);
+	double[][] matrixAdd(String LineA, String LineB);
 	
 	/**
 	 * 将一个行列式转换为html代码
@@ -47,22 +60,20 @@ public interface AutoAnswerService {
 	
 	/**
 	 * 矩阵的转置
-	 * @param file
 	 * @return 转置后的矩阵
 	 */
-	double[][] Transpose(File file);
+	double[][] Transpose(String line);
 	
 	/**
 	 * 求矩阵的逆
-	 * @param file
 	 * @return
 	 */
-	double[][] mrinv(File file);
+	double[][] mrinv(String line);
 	
 	/**
 	 * 求矩阵的秩
 	 * @param fille
 	 * @return
 	 */
-	int rank(File file);
+	int rank(String line);
 }

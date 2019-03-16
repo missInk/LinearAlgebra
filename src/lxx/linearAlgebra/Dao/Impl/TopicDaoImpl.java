@@ -7,7 +7,6 @@ import java.util.List;
 
 import lxx.linearAlgebra.Dao.TopicDao;
 import lxx.linearAlgebra.Util.DBUtil;
-import lxx.linearAlgebra.entity.Comment;
 import lxx.linearAlgebra.entity.Topic;
 
 public class TopicDaoImpl implements TopicDao {
@@ -30,40 +29,12 @@ public class TopicDaoImpl implements TopicDao {
 	}
 
 	@Override
-	public String goPage(int selectPage, int pageSize, String[] htmls) {
-		StringBuilder html = new StringBuilder();
+	public List<Topic> goPage(int selectPage, int pageSize) {
+		List<Topic> list = null;
 		String sql = "SELECT topic.title, user.uname, topic.status, topic.comment_count, topic.topic_time, topic.idtopic FROM linearalgebra.topic, linearalgebra.user where topic.topics_user_id = user.uid limit ?,?";
 		Object[] params = { (selectPage - 1) * pageSize, pageSize };
-		ResultSet rs = DBUtil.executeQuery(sql, params);
-		try {
-			while (rs.next()) {
-				String title = rs.getString(1);
-				String uname = rs.getString(2);
-				String status = rs.getString(3);
-				String comment_count = rs.getString(4);
-				String topic_time = rs.getString(5);
-				String idtopic = rs.getString(6);
-				html.append(htmls[0]);
-				html.append(idtopic);
-				html.append(htmls[1]);
-				html.append(title);
-				html.append(htmls[2]);
-				html.append(uname);
-				html.append(htmls[3]);
-				html.append(status);
-				html.append(htmls[4]);
-				html.append(comment_count);
-				html.append(htmls[5]);
-				html.append(topic_time);
-				html.append(htmls[6]);
-			}
-		} catch (SQLException e) {
-			System.out.println("遍历结果集出错");
-			e.printStackTrace();
-		} finally {
-			DBUtil.closeAll(rs, null, null);
-		}
-		return html.toString();
+		list = getTopic(DBUtil.executeQuery(sql, params));
+		return list;
 	}
 
 	@Override
@@ -76,6 +47,7 @@ public class TopicDaoImpl implements TopicDao {
 			if (rs.next()) {
 				topic.setTitle(rs.getString("title"));
 				topic.setContent(rs.getString("content"));
+				topic.setTopic_time(rs.getDate("topic_time"));
 			} else {
 				throw new RuntimeException("没有找到该问题");
 			}
@@ -88,45 +60,48 @@ public class TopicDaoImpl implements TopicDao {
 	}
 
 	@Override
-	public List<Comment> getComments(int idtopic) {
-		List<Comment> comments = new ArrayList<Comment>();
-		String sql = "SELECT * FROM linearalgebra.comment where comment_topic_id = ?";
-		Object[] params = { idtopic };
-		ResultSet rs = DBUtil.executeQuery(sql, params);
+	public List<Topic> findTopics(String val) {
+		List<Topic> list = null;
+		String sql = "SELECT topic.title, user.uname, topic.status, topic.comment_count, topic.topic_time, topic.idtopic FROM linearalgebra.topic, linearalgebra.user where title LIKE '%"
+				+ val +"%' and topic.topics_user_id = user.uid";
+		Object[] params = {  };
+		list = getTopic(DBUtil.executeQuery(sql, params));
+		return list;
+	}
+
+	/**
+	 * 通过返回的结果集来构造一个包含Topic的集合
+	 * @param rs 返回的结果
+	 * @return 一个包含Topic的集合
+	 */
+	private List<Topic> getTopic(ResultSet rs){
+		List<Topic> list = new ArrayList<Topic>();
 		try {
 			while (rs.next()) {
-				int idcomment = rs.getInt("idcomment");
-				int comment_user_id = rs.getInt("comment_user_id");
-				String content = rs.getString("content");
-				int floor = rs.getInt("floor");
-				String comment_time = rs.getString("comment_time");
-				int status = rs.getInt("status");
-				comments.add(new Comment(idcomment, content, floor, comment_time, comment_user_id, idtopic, status));
+				Topic topic = new Topic();
+				topic.setTitle(rs.getString(1));
+				topic.setUname(rs.getString(2));
+				topic.setStatus(rs.getInt(3));
+				topic.setComment_count(rs.getInt(4));
+				topic.setTopic_time(rs.getDate(5));
+				topic.setIdtopic(rs.getInt(6));
+				list.add(topic);
 			}
 		} catch (SQLException e) {
+			System.out.println("遍历结果集出错");
 			e.printStackTrace();
 		} finally {
 			DBUtil.closeAll(rs, null, null);
 		}
-		return comments;
+		return list;
 	}
 
 	@Override
-	public int getCommentCount(int idtopic) {
-		String sql = "SELECT COUNT(*) FROM linearalgebra.comment where comment_topic_id = ?";
+	public boolean delTopic(int idtopic) {
+		String sql = "DELETE FROM `linearalgebra`.`topic` WHERE `idtopic`= ?";
 		Object[] params = { idtopic };
-		return DBUtil.getTotalCount(sql, params);
+		boolean delTopic = DBUtil.executeUpdate(sql, params);
+		return delTopic;
 	}
-
-	@Override
-	public int upComment(Comment comment) {
-		String sql = "INSERT INTO `linearalgebra`.`comment` (`content`, `floor`, `comment_time`, `comment_user_id`, `comment_topic_id`, `status`) VALUES (?, ?, ?, ?, ?, '1')";
-		Object[] params = { comment.getContent(), comment.getFloor(), comment.getComment_time(), comment.getComment_user_id(), comment.getComment_topic_id() };
-		if(DBUtil.executeUpdate(sql, params)) {
-			return 1;
-		}else {
-			return 0;
-		}
-	}
-
+	
 }

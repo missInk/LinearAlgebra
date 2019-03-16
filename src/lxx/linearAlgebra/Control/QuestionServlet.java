@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lxx.linearAlgebra.Service.CommentService;
 import lxx.linearAlgebra.Service.TopicService;
+import lxx.linearAlgebra.Service.impl.CommentServiceImpl;
 import lxx.linearAlgebra.Service.impl.TopicServiceImpl;
 import lxx.linearAlgebra.entity.Comment;
 import lxx.linearAlgebra.entity.Topic;
@@ -74,15 +76,17 @@ public class QuestionServlet extends BaseServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void goPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String goPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
 		int selectPage = Integer.parseInt((String) request.getParameter("selectPage"));
 		int pageSize = Integer.parseInt((String) request.getParameter("pageSize"));
 		TopicService service = new TopicServiceImpl();
-		String html = service.goPage(selectPage, pageSize);
-		response.getWriter().println(html);
+		List<Topic> list = service.goPage(selectPage, pageSize);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("list", list);
+		return "question/questionForm.jsp";
 	}
 
 	/**
@@ -100,8 +104,9 @@ public class QuestionServlet extends BaseServlet {
 
 		int idtopic = Integer.parseInt((String) request.getParameter("idtopic"));
 		TopicService service = new TopicServiceImpl();
+		CommentService commentService = new CommentServiceImpl();
 		Topic topic = service.getTopic(idtopic);
-		List<Comment> comments = service.getComments(idtopic);
+		List<Comment> comments = commentService.getComments(idtopic);
 		request.setAttribute("topic", topic);
 		request.setAttribute("comments", comments);
 		return "question.jsp";
@@ -129,8 +134,8 @@ public class QuestionServlet extends BaseServlet {
 	    content = new String (source,"UTF-8");
 		
 		int idtopic = Integer.parseInt((String) request.getParameter("idtopic"));
-		TopicService service = new TopicServiceImpl();
-		service.upComment(uid, idtopic, content);
+		CommentService commentService = new CommentServiceImpl();
+		commentService.upComment(uid, idtopic, content);
 		return "QuestionServlet?method=goTopic&idtopic=" + idtopic;
 	}
 

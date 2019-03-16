@@ -13,6 +13,7 @@ public class Comment {
 	private int comment_user_id;
 	private int comment_topic_id;
 	private int status;
+	private String uname;
 
 	public Comment() {
 	}
@@ -34,6 +35,14 @@ public class Comment {
 		this.comment_user_id = comment_user_id;
 		this.comment_topic_id = comment_topic_id;
 		this.status = status;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
 	public int getIdComment() {

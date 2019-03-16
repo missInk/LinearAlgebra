@@ -15,12 +15,17 @@ import lxx.linearAlgebra.entity.UpFile;
 public class AutoAnswerServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
-	public String goPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void addLine(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
-		String pageName = (String) request.getParameter("pageName");
-		return "automaticAnswer/" + pageName;
+		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
+		UpFile upFile = autoAnswerService.upFile(request);
+		if (upFile.getUpResult().equals("文件上传成功")) {
+			response.getWriter().print(autoAnswerService.toLine(upFile.getFile().get(0)));
+		} else {
+			response.getWriter().print(upFile.getUpResult());
+		}
 	}
 
 	public void getValue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,31 +33,23 @@ public class AutoAnswerServlet extends BaseServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			double result = autoAnswerService.doGetValue(upFile.getFile().get(0));
-			response.getWriter().print("该行列式的值为" + result);
-		} else {
-			response.getWriter().print(upFile.getUpResult());
-		}
+		String line = (String)request.getParameter("line");
+		double result = autoAnswerService.doGetValue(line);
+		response.getWriter().print(result);
 	}
 
 	public void matrixMultiplication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
+		String lineA = (String)request.getParameter("lineA");
+		String lineB = (String)request.getParameter("lineB");
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			double[][] result = autoAnswerService.matrixMultiplication(upFile.getFile().get(0),
-					upFile.getFile().get(1));
-			if (result == null) {
-				response.getWriter().print("这两个行列式无法进行乘法运算");
-			} else {
-				response.getWriter().print(autoAnswerService.matrixToHtml(result));
-			}
+		double[][] result = autoAnswerService.matrixMultiplication(lineA, lineB);
+		if (result == null) {
+			response.getWriter().print("这两个行列式无法进行乘法运算");
 		} else {
-			response.getWriter().print(upFile.getUpResult());
+			response.getWriter().print(autoAnswerService.toLine(result));
 		}
 	}
 
@@ -60,66 +57,45 @@ public class AutoAnswerServlet extends BaseServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
+		String lineA = (String)request.getParameter("lineA");
+		String lineB = (String)request.getParameter("lineB");
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			double[][] result = autoAnswerService.matrixAdd(upFile.getFile().get(0), upFile.getFile().get(1));
-			if (result == null) {
-				response.getWriter().print("这两个行列式无法进行加法运算");
-			} else {
-				response.getWriter().print(autoAnswerService.matrixToHtml(result));
-			}
+		double[][] result = autoAnswerService.matrixAdd(lineA, lineB);
+		if (result == null) {
+			response.getWriter().print("这两个行列式无法进行jia法运算");
 		} else {
-			response.getWriter().print(upFile.getUpResult());
+			response.getWriter().print(autoAnswerService.toLine(result));
 		}
-	}
-
-	public String transpose_jsp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
-		return "automaticAnswer/transpose.jsp";
 	}
 
 	public void transpose(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
-
+		
+		String line = (String)request.getParameter("line");
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			double[][] result = autoAnswerService.Transpose(upFile.getFile().get(0));
-			response.getWriter().print(autoAnswerService.matrixToHtml(result));
-		} else {
-			response.getWriter().print(upFile.getUpResult());
-		}
+		double[][] matrix = autoAnswerService.Transpose(line);
+		response.getWriter().print(autoAnswerService.toLine(matrix));
 	}
 
 	public void mrinv(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
+		String line = (String)request.getParameter("line");
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			double[][] result = autoAnswerService.mrinv(upFile.getFile().get(0));
-			response.getWriter().print(autoAnswerService.matrixToHtml(result));
-		} else {
-			response.getWriter().print(upFile.getUpResult());
-		}
+		double[][] matrix = autoAnswerService.mrinv(line);
+		response.getWriter().print(autoAnswerService.toLine(matrix));
 	}
 
 	public void rank(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 
+		String line = (String)request.getParameter("line");
 		AutoAnswerService autoAnswerService = new AutoAnswerServiceImpl();
-		UpFile upFile = autoAnswerService.upFile(request);
-		if (upFile.getUpResult().equals("文件上传成功")) {
-			int result = autoAnswerService.rank(upFile.getFile().get(0));
-			response.getWriter().print("该行列式的秩为" + result);
-		} else {
-			response.getWriter().print(upFile.getUpResult());
-		}
+		int rank = autoAnswerService.rank(line);
+		response.getWriter().print(rank);
 	}
 	
 }
